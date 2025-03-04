@@ -1,0 +1,27 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Emotion Detection</title>
+  </head>
+  <body>
+    <h1>Real-Time Emotion Detection</h1>
+    <div>
+      <h3>Live Video Stream:</h3>
+      <img src="{{ url_for('video') }}" alt="Video Stream" />
+    </div>
+    <div>
+      <h3>Detected Emotion from Voice:</h3>
+      <p id="emotion"></p>
+    </div>
+    <script>
+      fetch("/audio")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("emotion").innerText = data;
+        });
+    </script>
+  </body>
+</html>
